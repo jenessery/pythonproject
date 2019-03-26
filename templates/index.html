@@ -1,0 +1,36 @@
+<!doctype html>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<html>
+    <head>
+        <title>My First Web App</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <body>
+
+            {% if name %}
+
+                <p> <h2> Hello {{name}}! </h2></p>
+
+            {% else %}
+
+            <p>Hello - No Name!</p>
+
+            {% endif %}
+
+        <div class="home">
+            <h2 class="logo">WARNING: This website is only for Millenials ;)</h1>
+
+            <div id="contact-form" >
+                <form method="post" action="/welcome">
+                    <label for="text">What should I call you?</label>
+                    <input type="text" id="name" name="name" required="required">
+                    <label for="text">In which year were you born?</label>
+                    <input type="text" id="year" name="year" required="required">
+                    <input type="submit" value="Submit" id="submit"/>
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>

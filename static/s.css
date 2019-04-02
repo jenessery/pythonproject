@@ -38,6 +38,14 @@ div.home {
           border-radius: 6px;
 }
 
+.welcome {
+  padding: 10px 0 30px 0;
+  text-align: center;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
 h2 {
   font-size: 3em;
   margin-top: 40px;
@@ -47,6 +55,10 @@ h2 {
 
 form {
   text-align: center;
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
 }
 
 p{
@@ -102,7 +114,7 @@ p{
 #nav li a:hover {
   color: #fff;
   opacity:1; }
-  
+
 /***** contact us *****/
 #contact{
     background-color:#f1f1f1;

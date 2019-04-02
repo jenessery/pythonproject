@@ -35,7 +35,7 @@ def agecondition():
     else:
         return render_template("notwelcome.html",gen=gen, name=name)
 
-@app.route("/dict",methods=["POST"])
+@app.route("/dictionary",methods=["POST"])
 def wordlookup():
     form_data = request.form
     word_id = form_data["word"]
@@ -44,12 +44,14 @@ def wordlookup():
     url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/en/' + word_id.lower() + '/synonyms'
 
     r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key}).json()
+    return r
 
     synonyms = r['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms']
-    word = relac['results'][0]['word']
-    define = synonyms = relax['results'][0]['lexicalEntries'][0]['entries'][0]['definitions']
+    word = r['results'][0]['word'][0]
+    define = r['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions']
 
-    return render_template("dict.html",r=synonyms,w=word,d=define)
+
+    return render_template("dictionary.html",r=synonyms,w=word,d=define)
 
 @app.route("/about")
 def about():

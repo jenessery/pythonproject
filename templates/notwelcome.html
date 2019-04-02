@@ -3,14 +3,14 @@
 <html>
     <head>
         <title>My First Web App</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='snw.css') }}">
     </head>
 
     <body>
 
             {% if name %}
 
-                <p> <h2> Hello {{name}} </h2></p>
+                <p> <h1> Hello {{name}} </h1></p>
 
             {% else %}
 
@@ -19,7 +19,7 @@
             {% endif %}
 
         <div class="notwelcome">
-            <h2>Unfortunately, this website is not for you. {{gen}}</h1>
+            <h2>Unfortunately, this website is not for you. {{gen}}</h2>
 
         </div>
 

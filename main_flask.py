@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import requests
 import json
-from words import OxfordDictionaries
 
 app = Flask("Test")
 
@@ -47,23 +46,18 @@ def wordlookup():
     r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key}).json()
 
     synonyms = r['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms']
-
-    return render_template("dict.html",r=synonyms)
-
-
-def wordlookup2():
-    form_data = request.form
-    word_id = form_data["word"]
-    app_id = '9195ec30'
-    app_key = '0af5c75c6cf9f52ce7eea31a04a9bcdc'
-    o = OxfordDictionaries(app_id, app_key)
-    relax = o.get_synonyms(word_id).json()
-
-    synonyms = relax['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms']
     word = relac['results'][0]['word']
     define = synonyms = relax['results'][0]['lexicalEntries'][0]['entries'][0]['definitions']
 
     return render_template("dict.html",r=synonyms,w=word,d=define)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 
 if __name__ == "__main__":

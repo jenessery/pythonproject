@@ -38,8 +38,16 @@ div.home {
           border-radius: 6px;
 }
 
+h1 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+}
+
 h2 {
   font-size: 3em;
+  color: white;
   margin-top: 40px;
   text-align: center;
   letter-spacing: -2px;
@@ -54,47 +62,3 @@ p{
   margin-top: 20px;
   text-align: center;
 }
-header {
-    width: 100%;
-    text-align: center;
-    background-color: black;
-    color: white;
-    border-width: 0;
-    margin: 0;
-  }
-  a {
-    color: white;
-  }
-  ul {
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  li {
-    display: inline;
-    padding: 0px 10px 0px 10px;
-  }
-  h1 {
-    text-align: center;
-    margin: 0;
-  }
-
-  /***** contact us *****/
-  #contact{
-      background-color:#f1f1f1;
-      font-family: 'Wellfleet', sans-serif;
-  }
-  #contact .well{
-      margin-top:30px;
-      border-radius:0;
-  }
-  #contact .form-control{
-      border-radius: 0;
-      border:2px solid #1e1e1e;
-  }
-  #contact button{
-      border-radius:0;
-      border:2px solid #1e1e1e;
-  }
-  #contact .row{
-      margin-bottom:30px;
-  }

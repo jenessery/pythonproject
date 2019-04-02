@@ -1,0 +1,35 @@
+<!doctype html>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<html>
+    <head>
+        <title>My First Web App</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='s.css') }}">
+    </head>
+
+    <body>
+
+            {% if name %}
+
+                <p> <h2> Hello {{name}}! </h2></p>
+
+            {% else %}
+
+            <p>Hello - No Name!</p>
+
+            {% endif %}
+
+        <div class="welcome">
+            <h2>Congratulations, you're ready to go!!!</h1>
+
+        </div>
+
+        <div id="dictionary">
+          <form method="post" action="/dict">
+              <label for="text">Hi {{name}}, what would you like to look up?</label>
+              <input type="text" id="word" name="word" required="required">
+              <input type="submit" value="Submit" id="submit"/>
+          </form>
+        </div>
+
+    </body>
+</html>

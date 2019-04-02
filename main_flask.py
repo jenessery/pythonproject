@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+import requests
+import json
 
 app = Flask("Test")
 
@@ -6,11 +8,13 @@ def calcgen(year):
     import datetime
     today = datetime.datetime.now()
     if year> today.year:
-        raise Exception("Year of birth cannot be in the future.")
-    elif 1976<year<1997:
-         gen = "Millenial"
+        gen = "You are a time traveller, with a date of birth in the future!"
+    elif year>=1997:
+        gen = "You're too young :("
+    elif year<1997 and year>1976:
+        gen = "Millenial"
     elif year<=1976:
-        raise Exception("Sorry, you're too old for this website :(")
+        gen = "You're too old :("
     else:
         raise Exception("Please input a valid year of birth")
     return gen
@@ -24,7 +28,42 @@ def default():
 def agecondition():
     form_data = request.form
     year = form_data["year"]
-    try:
-        return render_template("gen.html", gen=calcgen(int(year)).title(), year=year)
-    except:
-        return "Please input a valid year."
+    name = form_data["name"]
+    gen=calcgen(int(year))
+    if gen=="Millenial":
+        return render_template("welcome.html", gen=gen.title(), year=year, name=name)
+    else:
+        return render_template("notwelcome.html",gen=gen, name=name)
+
+@app.route("/dict",methods=["POST"])
+def wordlookup():
+    form_data = request.form
+    word_id = form_data["word"]
+    app_id = '9195ec30'
+    app_key = '0af5c75c6cf9f52ce7eea31a04a9bcdc'
+    url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/en/' + word_id.lower() + '/synonyms'
+
+    r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key}).json()
+
+    synonyms = r['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms']
+
+    return render_template("dict.html",r=synonyms)
+
+
+def wordlookup2():
+    form_data = request.form
+    word_id = form_data["word"]
+    app_id = '9195ec30'
+    app_key = '0af5c75c6cf9f52ce7eea31a04a9bcdc'
+    o = OxfordDictionaries(app_id, app_key)
+    relax = o.get_synonyms(word_id).json()
+
+    synonyms = relax['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms']
+    word = relac['results'][0]['word']
+    define = synonyms = relax['results'][0]['lexicalEntries'][0]['entries'][0]['definitions']
+
+    return render_template("dict.html",r=synonyms,w=word,d=define)
+
+
+if __name__ == "__main__":
+	app.run()
